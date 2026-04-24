@@ -24,5 +24,5 @@ test('User login test @master @sanity @regression',async()=>{
     
     await loginPage.clickLoginpage(config.UserId,config.password);
 
-    
+    console.log("login successfull")
 })
