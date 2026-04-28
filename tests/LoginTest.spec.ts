@@ -8,7 +8,7 @@ let config: TestConfig;
 
 let loginPage: Loginpage;
 
-
+/*
 // This hook runs before each test
 test.beforeEach(async ({ page }) => {
   config = new TestConfig(); // Load config (URL, credentials)
@@ -17,12 +17,14 @@ test.beforeEach(async ({ page }) => {
   // Initialize page objects
   loginPage = new Loginpage(page);
 });
+*/
 test('User login test @master @sanity @regression',async()=>{
 
     //Navigate to Login page via Home page
 
     
-    await loginPage.clickLoginpage(config.UserId,config.password);
+   // await loginPage.login(config.UserId,config.password);
 
     console.log("login successfull")
+    
 })

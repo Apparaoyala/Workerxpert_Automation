@@ -24,22 +24,25 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 }, // Set default viewport size for consistency 
     ignoreHTTPSErrors: true, // Ignore SSL errors if necessary 
     permissions: ['geolocation'], // Set necessary permissions for geolocation-based tests 
+ 
+  // storageState:'D:\WorkerXpert_Automation\tests\auth.setup.ts'
+
   }, 
+  
   
   //grep: /@master/, 
   
-  projects: [ 
-   { 
-      name: 'chromium', 
-      use: { ...devices['Desktop Chrome'] }, 
+   projects: [
+    {
+      name: 'setup',
+      testMatch: /.*auth\.setup\.ts/,
     },
-    { 
-       name: 'firefox', 
-      use: { ...devices['Desktop Firefox'] }, 
-    },
-    { 
-        name: 'webkit', 
-      use: { ...devices['Desktop Safari'] }, 
+    {
+      name: 'chromium',
+      use: {
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
     },
   ],
 });

@@ -27,7 +27,7 @@ export class Loginpage{
     
 
  // Click "My Account" link
-    async clickLoginpage(users:string,passwords:string,){
+    async login(users:string,passwords:string,){
         await this.Userid.fill(users);
         await this.password.fill(passwords);
         await this.loginButton.click();
