@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+  "test:chromium": "npx playwright test --project=chromium",
+  "test:headed": "npx playwright test --project=chromium --headed",
+  "report-mail": "node utilitys/sendReportEmail.js",
+  "run-all": "npm run test:chromium && npm run report-mail"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -15,7 +21,9 @@
   },
   "dependencies": {
     "@faker-js/faker": "^10.4.0",
+    "archiver": "^7.0.1",
     "csv-parse": "^6.2.1",
+    "nodemailer": "^8.0.7",
     "xlsx": "^0.18.5"
   }
 }

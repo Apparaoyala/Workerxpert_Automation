@@ -1,42 +1,39 @@
-import { defineConfig, devices } from '@playwright/test'; 
-  
-export default defineConfig({ 
-  timeout: 30 * 1000,   //30000 ms(30 secs) 
-  testDir: './tests', 
-  fullyParallel: false, 
-  //retries: process.env.CI ? 2 : 0, 
-  retries:1, 
-  //workers: process.env.CI ? 1 : undefined, 
-  workers: 1, 
-  
-  reporter: [ 
-    ['html'], 
-    ['allure-playwright'], 
-    ['dot'], 
-    ['list'] 
-  ], 
-  
-  use: { 
-    trace: 'on-first-retry', 
-    screenshot: 'only-on-failure', 
-    video: 'retain-on-failure', 
-    //headless: false, 
-    viewport: { width: 1280, height: 720 }, // Set default viewport size for consistency 
-    ignoreHTTPSErrors: true, // Ignore SSL errors if necessary 
-    permissions: ['geolocation'], // Set necessary permissions for geolocation-based tests 
- 
-  // storageState:'D:\WorkerXpert_Automation\tests\auth.setup.ts'
+import { defineConfig, devices } from '@playwright/test';
 
-  }, 
-  
-  
-  //grep: /@master/, 
-  
-   projects: [
+export default defineConfig({
+
+  // ADD HERE
+  globalTeardown: './global-teardown.ts',
+
+  timeout: 30 * 1000,
+  testDir: './tests',
+  fullyParallel: false,
+  retries: 1,
+  workers: 1,
+
+  reporter: [
+    ['html'],
+    ['allure-playwright'],
+    ['dot'],
+    ['list'],
+    ['json', { outputFile: 'test-results.json' }]
+  ],
+
+  use: {
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    viewport: { width: 1280, height: 720 },
+    ignoreHTTPSErrors: true,
+    permissions: ['geolocation']
+  },
+
+  projects: [
     {
       name: 'setup',
       testMatch: /.*auth\.setup\.ts/,
     },
+
     {
       name: 'chromium',
       use: {
@@ -45,4 +42,5 @@ export default defineConfig({
       dependencies: ['setup'],
     },
   ],
+
 });

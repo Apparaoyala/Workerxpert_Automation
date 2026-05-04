@@ -37,14 +37,16 @@ private readonly page: Page;
         
         }
 
-        async openOffers2(){
+        async filters(){
 
             await this.filter.click();
         await this.evntNumber.fill("2519");
         await this.go.click();
-        await this.Req.click();
+        
 
         }
-
+ async openOffers3(){
+    await this.Req.click();
+ }
 
 }

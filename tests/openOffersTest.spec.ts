@@ -14,7 +14,8 @@ await page.goto(config.homeUrl);
 const openOffers = new OpenOffersPage(page)
 await openOffers.openOffers1()
 
-await openOffers.openOffers2()
+await openOffers.filters()
+await openOffers.openOffers3()
     console.log("open offers screen is working fine")
 })
 /*
